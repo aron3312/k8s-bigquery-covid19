@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 from flask import Blueprint, jsonify, render_template
 from project import client
 from project.config import *
@@ -12,10 +13,13 @@ def index():
     SELECT * FROM `{}.{}.{}`
     """.format(client.project, dataset_name, table_name)
     all_d = [p for p in client.query(all_query).result()]
-    all_cured = sum([int(p["curedCount"]) for p in all_d if p["curedCount"] and not p["cityName"]])
-    all_infect = sum([int(p["confirmedCount"]) for p in all_d if p["confirmedCount"] and not p["cityName"]])
-    all_dead = sum([int(p["deadCount"]) for p in all_d if p["deadCount"] and not p["cityName"]])
+    cols = list(all_d[0].keys())
+    all_df = pd.DataFrame([tuple(p.values()) for p in all_d], columns=cols)
+    all_cured = all_df[(all_df["cityName"] == "") & (all_df["curedCount"] != "")].groupby("provinceName").apply(lambda x: x.sort_values(by='updateTime', ascending=False).iloc[0,:]["curedCount"]).astype(int).sum()
+    all_infect = all_df[(all_df["cityName"] == "") & (all_df["confirmedCount"] != "")].groupby("provinceName").apply(lambda x: x.sort_values(by='updateTime', ascending=False).iloc[0,:]["confirmedCount"]).astype(int).sum()
+    all_dead = all_df[(all_df["cityName"] == "") & (all_df["deadCount"] != "")].groupby("provinceName").apply(lambda x: x.sort_values(by='updateTime', ascending=False).iloc[0,:]["deadCount"]).astype(int).sum()
     return render_template("index.html", all_d=(all_cured, all_infect, all_dead))
+
 
 @covid19_blueprint.route('/covid19', methods=['GET'])
 def list_all():
