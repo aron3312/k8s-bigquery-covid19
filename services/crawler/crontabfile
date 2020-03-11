@@ -1,1 +1,1 @@
-* * * * *  /usr/local/bin/python /usr/src/app/upload2bigquery.py cron >> /var/log/cron.log 2>&1
+0 */1 * * *  /usr/local/bin/python /usr/src/app/upload2bigquery.py cron >> /var/log/cron.log 2>&1

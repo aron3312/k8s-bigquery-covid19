@@ -7,7 +7,7 @@ metadata:
   name: crawler
 spec:
   progressDeadlineSeconds: 2147483647
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: crawler
@@ -18,7 +18,10 @@ spec:
         app: crawler
     spec:
       containers:
-        image: asia.gcr.io/speech-251314/covid19-crawler:v1
+      - env:
+        - name: FLASK_ENV
+          value: development
+        image: asia.gcr.io/speech-251314/covid19-crawler:v2
         imagePullPolicy: Always
         name: crawler
         resources: {}

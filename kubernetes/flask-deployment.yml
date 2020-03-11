@@ -21,7 +21,7 @@ spec:
       - env:
         - name: FLASK_ENV
           value: development
-        image: asia.gcr.io/speech-251314/flask_k8s:v1
+        image: asia.gcr.io/speech-251314/flask_k8s:v3
         imagePullPolicy: Always
         name: flask
         resources: {}
