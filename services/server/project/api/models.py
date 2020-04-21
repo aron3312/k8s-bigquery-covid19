@@ -12,4 +12,15 @@ covid_data_schema = [
     bigquery.SchemaField("curedCount", "STRING", mode="REQUIRED"),
     bigquery.SchemaField("deadCount", "STRING", mode="REQUIRED"),
     bigquery.SchemaField("updateTime", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("crawlTime", "DATETIME	", mode="REQUIRED")
+]
+
+daily_report_schema = [
+    bigquery.SchemaField("all_confirmed", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("all_cured", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("all_dead", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("provinceName", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("updateTime", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("crawlTime", "DATETIME", mode="REQUIRED"),
+
 ]

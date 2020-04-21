@@ -2,7 +2,7 @@ from flask.cli import FlaskGroup
 from google.cloud import bigquery
 from project import create_app, client
 from project.upload2bigquery import *
-from project.api.models import covid_data_schema
+from project.api.models import covid_data_schema, daily_report_schema
 from project.config import *
 
 app = create_app()
@@ -24,9 +24,9 @@ def build_dataset():
 
 @cli.command('build_table')
 def build_table():
-
+    table_name = "hourly_report"
     table_id = "{}.{}.{}".format(client.project, dataset_name, table_name)
-    table = bigquery.Table(table_id, schema=covid_data_schema)
+    table = bigquery.Table(table_id, schema=daily_report_schema)
     table = client.create_table(table)  # Make an API request.
     print(
         "Created table {}.{}.{}".format(table.project, table.dataset_id, table.table_id)

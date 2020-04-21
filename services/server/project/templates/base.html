@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <script data-ad-client="pub-1428468299980591" async src="https://pagead2.googlesyndication.com/
+pagead/js/adsbygoogle.js"></script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -9,215 +11,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KBDVDSB');</script>
 <!-- End Google Tag Manager -->
     <meta charset="utf-8">
-    <title>疫情狀況即時情況</title>
-
-    <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  {# MEDIUM STYLE EDITOR#}
-        <script src="https://cdn.bootcss.com/heatmap.js/2.0.2/heatmap.min.js"></script>
-        <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-        <script src="{{ url_for('static', filename='js/leaflet-heatmap.js') }}"></script>
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
-    <style>
-@import url(https://fonts.googleapis.com/css?family=Dosis:300|Lato:300,400,600,700|Roboto+Condensed:300,700|Open+Sans+Condensed:300,600|Open+Sans:400,300,600,700|Maven+Pro:400,700);
-@import url("https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css");
-* {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-html, body {
-  background-color: #202B33;
-  color: #738491;
-  font-family: "Open Sans";
-  font-size: 16px;
-  font-smoothing: antialiased;
-  overflow: hidden;
-}
-
-header {
-  color: #D3D3D3;
-}
-
-nav {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 82%;
-  left: 0;
-  padding: 22px;
-  border-right: 2px solid #161e23;
-}
-nav > header {
-  font-weight: 700;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-}
-nav section {
-  font-weight: 600;
-}
-nav section header {
-  padding-top: 30px;
-}
-nav section ul {
-  list-style: none;
-  padding: 0px;
-}
-nav section ul li {
-  position: relative;
-  padding: 10px 0px;
-}
-nav section ul li.active {
-  color: #2278AE;
-}
-nav section ul li:after {
-  content: attr(data-value);
-  position: absolute;
-  right: 0px;
-  width: 19px;
-  background-color: #738491;
-  font-size: 0.9rem;
-  color: #202B33;
-  -moz-border-radius: 19px;
-  -webkit-border-radius: 19px;
-  border-radius: 19px;
-  text-align: center;
-}
-nav section ul li.red:after {
-  content: '';
-  position: absolute;
-  top: 14px;
-  right: 0px;
-  width: 10px;
-  height: 10px;
-  background-color: #ec487f;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-nav section ul li.yellow:after {
-  content: '';
-  position: absolute;
-  top: 14px;
-  right: 0px;
-  width: 10px;
-  height: 10px;
-  background-color: #ea8e39;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-nav section ul li.green:after {
-  content: '';
-  position: absolute;
-  top: 14px;
-  right: 0px;
-  width: 10px;
-  height: 10px;
-  background-color: #38af5b;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-nav section ul li.new {
-  font-size: 0.9rem;
-  color: #545f68;
-}
-
-article {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 18%;
-  overflow: auto;
-  border-left: 2px solid #2a3843;
-  padding: 20px;
-}
-article > header {
-  height: 60px;
-  border-bottom: 1px solid #2a3843;
-}
-article > header .title {
-  float: left;
-  font-size: 1.3rem;
-  font-weight: 600;
-}
-article > header .interval {
-  float: right;
-}
-article > header .interval ul {
-  padding: 0;
-  list-style: none;
-}
-article > header .interval ul li {
-  float: right;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 2px 10px;
-  margin: 0px 10px;
-}
-article > header .interval ul li.active {
-  background-color: #D3D3D3;
-  color: #202B33;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-article section {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-article section > header {
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-article section .chart {
-  height: 200px;
-}
-article section .inlineChart {
-  float: left;
-  width: 30%;
-  margin-bottom: 50px;
-}
-article section .inlineChart canvas {
-  float: left;
-}
-article section .inlineChart .info {
-  float: left;
-  padding-left: 20px;
-  padding-top: 16px;
-}
-article section .inlineChart .info .value {
-  font-size: 2.0rem;
-  color: #D3D3D3;
-}
-article section table {
-  width: 100%;
-}
-article section table th, article section table td {
-  padding: 15px 0px;
-  border-bottom: 1px solid #2a3843;
-}
-article section table thead th {
-  text-align: left;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  color: #D3D3D3;
-}
-
-    </style>
-    <!--Custom Css -->
-    <!--Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-  <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="即時回報目前新型冠狀病毒(Covid19,武漢肺炎)之各國資訊">
+      <link rel="icon" type="image/x-icon" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/virus-71-568647.png" />
+    <title>新型冠狀病毒(Covid19,武漢肺炎)疫情狀況即時情況</title>
+      <script src="https://kit.fontawesome.com/14237074f4.js" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+      <script src="https://cdn.bootcss.com/heatmap.js/2.0.2/heatmap.min.js"></script>
+      <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+      <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+      <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+      <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+      <script src="{{ url_for('static', filename='js/leaflet-heatmap.js') }}"></script>
+            <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css">
+      <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+      <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+      <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
   </head>
   <body>
 <!-- Google Tag Manager (noscript) -->
@@ -225,32 +38,19 @@ article section table thead th {
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <nav>
-  <header>Sales Report</header>
+  <header>Covid19 Report</header>
   <section>
     <header>Main</header>
     <ul>
-      <li class="active">Dashboard</li>
-      <li data-value="8">Reports</li>
-      <li>Groups</li>
+      <li class="active"><a href="{{   url_for('covid19.index') }}">Dashboard</a></li>
+      <li><a href="{{ url_for('covid19.area_chart') }}">Area Chart</a></li>
     </ul>
   </section>
   <section>
-    <header>Account</header>
+    <header>Related Link</header>
     <ul>
-      <li>Activity</li>
-      <li data-value="4">Messages</li>
-      <li>Downloads</li>
-    </ul>
-  </section>
-  <section>
-    <header>Categories</header>
-    <ul>
-      <li class="red">Credit Sales</li>
-      <li class="yellow">Channel Sales</li>
-      <li class="green">Direct Sales</li>
-      <li class="new"> <i class="fa fa-plus-circle"> </i>
-        Add Category
-      </li>
+      <li><a href="https://emask.taiwan.gov.tw/msk/index.jsp">口罩購買網站(官方)</a></li>
+      <li><a href="https://www.cdc.gov.tw/Category/List/nFqbyDDKTzaRmmgkUcjHpw">官方疫情訊息</a></li>
     </ul>
   </section>
 </nav>

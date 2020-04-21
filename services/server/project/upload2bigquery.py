@@ -5,6 +5,7 @@ import json
 
 
 def get_latest_covid_data():
+    time = datetime.now().strftime("%Y-%M-%d %H:%M")
     table_id ="{}.{}.{}".format(client.project, dataset_name, table_name)
     table = client.get_table(table_id)
 
@@ -15,14 +16,14 @@ def get_latest_covid_data():
         if not d["cities"]:
             row = [d['countryName'], d['countryEnglishName'], d["provinceName"], d["provinceEnglishName"], "",
                    d["currentConfirmedCount"], d["confirmedCount"], d["suspectedCount"], d["curedCount"], d["deadCount"],
-                   d["updateTime"]
+                   d["updateTime"], time
                    ]
             row = [p if p else "" for p in row]
             need_data.append(tuple(row))
         else:
             row = [d['countryName'], d['countryEnglishName'], d["provinceName"], d["provinceEnglishName"], "",
                    d["currentConfirmedCount"], d["confirmedCount"], d["suspectedCount"], d["curedCount"], d["deadCount"],
-                   d["updateTime"]
+                   d["updateTime"], time
                    ]
             row = [p if p else "" for p in row]
             need_data.append(tuple(row))
@@ -30,7 +31,7 @@ def get_latest_covid_data():
                 row = [d['countryName'], d['countryEnglishName'], d["provinceName"], d["provinceEnglishName"], city["cityName"],
                        city["currentConfirmedCount"], city["confirmedCount"], city["suspectedCount"], city["curedCount"],
                        city["deadCount"],
-                       d["updateTime"]
+                       d["updateTime"], time
                        ]
                 row = [p if p else "" for p in row]
                 need_data.append(tuple(row))
