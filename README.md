@@ -21,3 +21,4 @@ Data source is from : https://lab.isaaclin.cn/nCoV/zh
 
 ## Demo
 <img src="img/cover.jpg" width="50%" height="50%">
+<img src="img/chart.jpg" width="50%" height="50%">
