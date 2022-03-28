@@ -1,0 +1,37 @@
+{% for d in table_data %}
+<tr>
+<td> {{ d.provinceName }} </td>
+<td> {{ d.all_confirmed }}</td>
+{%  if d.update_data %}
+    {% if d.update_data[0]  > 0 %}
+<td class="update-increase-td">{{ d.update_data[0] }} <i class="glyphicon glyphicon-arrow-up"></i></td>
+    {% elif  d.update_data[0]  < 0 %}
+    <td class="update-decrease-td">{{ d.update_data[0] }}</td>
+    {% else %}
+    <td>{{ d.update_data[0] }}</td>
+    {% endif %}
+    <td> {{ d.all_cured }}</td>
+                {% if  d.update_data[1]  > 0 %}
+<td class="update-increase-td">{{ d.update_data[1] }} <i class="glyphicon glyphicon-arrow-up"></i></td>
+    {% elif  d.update_data[1]  < 0 %}
+    <td class="update-decrease-td">{{ d.update_data[1] }}</td>
+    {% else %}
+    <td>{{ d.update_data[1] }}</td>
+    {% endif %}
+<td> {{ d.all_dead }}</td>
+            {% if  d.update_data[2]  > 0 %}
+<td class="update-increase-td">{{ d.update_data[2] }} <i class="glyphicon glyphicon-arrow-up"></i></td>
+    {% elif  d.update_data[2]  < 0 %}
+    <td class="update-decrease-td">{{ d.update_data[2] }}</td>
+    {% else %}
+    <td>{{ d.update_data[2] }}</td>
+    {% endif %}
+{% else %}
+    <td></td>
+<td> {{ d.all_cured }}</td>
+<td></td>
+<td> {{ d.all_dead }}</td>
+<td></td>
+</tr>
+    {% endif %}
+{% endfor %}

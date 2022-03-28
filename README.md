@@ -17,7 +17,7 @@ Data source is from : https://lab.isaaclin.cn/nCoV/zh
 
 <pre>git clone {project website}</pre>
 
-### Second Step
-
 ---
 
+## Demo
+<img src="img/cover.jpg" width="50%" height="50%">

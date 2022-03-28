@@ -1,6 +1,7 @@
-        $(document).ready( function () {
-    $('#area-table').DataTable();
-} );
+
+var area_table = $('#area-table').DataTable();
+area_table;
+
 
 var baseLayer = L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
@@ -43,18 +44,36 @@ var cfg = {
 };
 
 
+function markonClick(e) {
+	area_name = e.target._popup._content.split(" ")[0];
+			$.ajax({
+		url: '/api/getlocation/' + area_name,
+		type: "GET",
+		success: function (msg) {
+			area_table.clear();
+			d = [msg['provinceName'], msg['all_confirmed'],msg['update_confirmed'],msg['all_cured'],msg['update_cured'],msg['all_dead'],msg['update_dead']];
+			area_table.row.add(d).draw();
+		}, error: function (msg) {
+			console.log('無法送出');
+		}
+	});
+
+}
+
 var heatmapLayer = new HeatmapOverlay(cfg);
 var map = new L.Map('map-canvas', {
-  center: new L.LatLng(25.6586, -80.3568),
-  zoom: 4,
+  center: new L.LatLng(23.5, 121),
+  zoom: 6,
   layers: [baseLayer, heatmapLayer]
 });
     for(i=0;i<testData.data.length;i++){
         if(testData.data[i].type == "green") {
-            L.marker([testData.data[i]["lat"], testData.data[i]["lng"]], {icon: greenIcon}).addTo(map).bindPopup(testData.data[i]["name"] + "確診人數： " + testData.data[i]["count"]);
+        	loc_name = testData.data[i]["name"];
+            L.marker([testData.data[i]["lat"], testData.data[i]["lng"]], {icon: greenIcon}).addTo(map).bindPopup(loc_name + " 確診人數： " + testData.data[i]["count"]).on('click', function(e){markonClick(e)});
         }
         else{
-            L.marker([testData.data[i]["lat"], testData.data[i]["lng"]], {icon: redIcon}).addTo(map).bindPopup(testData.data[i]["name"] + " 確診人數： " + testData.data[i]["count"]);
+        	loc_name = testData.data[i]["name"];
+            L.marker([testData.data[i]["lat"], testData.data[i]["lng"]], {icon: redIcon}).addTo(map).bindPopup(loc_name + " 確診人數： " + testData.data[i]["count"]).on('click', function(e){markonClick(e)});
         }
         }
 heatmapLayer.setData(testData);
@@ -159,3 +178,15 @@ jQuery(function ($) {
 	$this.countTo(options);
   }
 });
+
+
+var example_table = $('#example').DataTable();
+example_table;
+//
+// $(document).ready(function() {
+//     $('#example').DataTable( {
+//         "serverSide": true,
+// 		"processing": true,
+//         "ajax": "api/getlazy"
+//     } );
+// } );

@@ -37,18 +37,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBDVDSB"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<nav>
+<nav class="topnav" id="myTopnav">
   <header>Covid19 Report</header>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
   <section>
     <header>Main</header>
     <ul>
-      <li class="active"><a href="{{   url_for('covid19.index') }}">Dashboard</a></li>
-      <li><a href="{{ url_for('covid19.area_chart') }}">Area Chart</a></li>
-    </ul>
-  </section>
-  <section>
+      <li class="active"><a href="{{   url_for('covid19.index') }}" class="glyphicon glyphicon-th-large link-icon"></a><a class="link" href="{{   url_for('covid19.index') }}"> Dashboard</a></li>
+      <li class="active"><a href="{{ url_for('covid19.area_chart') }}" class="glyphicon glyphicon-signal link-icon"></a><a class="link" href="{{ url_for('covid19.area_chart') }}"> Area Chart</a></li>
     <header>Related Link</header>
-    <ul>
       <li><a href="https://emask.taiwan.gov.tw/msk/index.jsp">口罩購買網站(官方)</a></li>
       <li><a href="https://www.cdc.gov.tw/Category/List/nFqbyDDKTzaRmmgkUcjHpw">官方疫情訊息</a></li>
     </ul>
@@ -56,5 +55,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
     {% block content %}
     {% endblock %}
+  <script>
+      function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}</script>
   </body>
+
 </html>

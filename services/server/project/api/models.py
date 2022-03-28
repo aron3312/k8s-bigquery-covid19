@@ -22,5 +22,8 @@ daily_report_schema = [
     bigquery.SchemaField("provinceName", "STRING", mode="REQUIRED"),
     bigquery.SchemaField("updateTime", "STRING", mode="REQUIRED"),
     bigquery.SchemaField("crawlTime", "DATETIME", mode="REQUIRED"),
+    bigquery.SchemaField("update_confirmed", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("update_cured", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("update_dead", "STRING", mode="REQUIRED"),
 
 ]

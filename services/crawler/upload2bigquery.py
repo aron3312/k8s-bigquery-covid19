@@ -1,13 +1,18 @@
 from config import *
 from google.cloud import bigquery
 from crawler import Crawler
+from opencc import OpenCC
 import requests
 import json
 import os
+import numpy as np
+import pandas as pd
 from datetime import datetime
 from datetime import timedelta
 
+
 def get_latest_covid_data(client):
+    cc = OpenCC('s2t')
     time = datetime.now() + timedelta(hours=8)
     table_id ="{}.{}.{}".format(client.project, dataset_name, table_name)
     table = client.get_table(table_id)
@@ -56,14 +61,39 @@ def get_latest_covid_data(client):
         """.format(
         client.project, dataset_name, table_name, client.project, dataset_name, table_name
     )
-    all_d = [tuple(p) for p in client.query(all_query).result()]
+    all_d = [dict(p) for p in client.query(all_query).result()]
+    now_history_data = pd.DataFrame([tuple(p.values()) for p in all_d], columns=list(all_d[0].keys()))
+    compare_data = now_history_data.groupby(["provinceName"]).apply(
+        lambda x: np.array(x.sort_values("crawlTime", ascending=False).iloc[0, :3].to_numpy()) - np.array(
+            x.sort_values("crawlTime", ascending=False).iloc[1, :3].to_numpy()) if len(x) > 1 else "")
+    compare_map = {name: list(value) for value, name in zip(list(compare_data), compare_data.index)}
+    update_time = all_d[0]['crawlTime']
+    all_d = [p for p in all_d if p['crawlTime'] == update_time]
+    for d in all_d:
+        if d["provinceName"] in compare_map:
+            if len(compare_map[d["provinceName"]]) == 3:
+                d["update_confirmed"] = compare_map[d["provinceName"]][0]
+                d["update_coured"] = compare_map[d["provinceName"]][1]
+                d["update_dead"] = compare_map[d["provinceName"]][2]
+                d['provinceName'] = cc.convert(d['provinceName'])
+            else:
+                d["update_confirmed"] = 0
+                d["update_coured"] = 0
+                d["update_dead"] = 0
+                d['provinceName'] = cc.convert(d['provinceName'])
+        else:
+            d["update_confirmed"] = ''
+            d["update_coured"] = ''
+            d["update_dead"] = ''
+            d['provinceName'] = cc.convert(d['provinceName'])
+    all_d = [tuple(p.values()) for p in all_d]
     delete = client.query("""
                  DELETE FROM `{}.{}.{}` WHERE TRUE
                  """.format(client.project, dataset_name, "hourly_report")
                  )
     print(delete.result())
     client.query("""
-    INSERT `{}.{}.{}` (all_confirmed, all_cured, all_dead, provinceName, updateTime, crawlTime) VALUES {}
+    INSERT `{}.{}.{}` (all_confirmed, all_cured, all_dead,provinceName, updateTime, crawlTime, update_confirmed, update_cured, update_dead) VALUES {}
     """.format(client.project, dataset_name, "hourly_report", ','.join(['('+','.join(['"' + str(a) + '"' for a in p]) + ')' for p in all_d]))).result()
     return None
 

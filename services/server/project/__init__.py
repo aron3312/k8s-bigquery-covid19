@@ -15,7 +15,7 @@ def create_app(script_info=None):
 
     # instantiate the app
     app = Flask(__name__)
-
+    app.config['JSON_AS_ASCII'] = False
     # enable CORS
     CORS(app)
 

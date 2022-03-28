@@ -71,49 +71,6 @@
         text-align: center;
     }
 
-    nav section ul li.red:after {
-        content: '';
-        position: absolute;
-        top: 14px;
-        right: 0px;
-        width: 10px;
-        height: 10px;
-        background-color: #ec487f;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-    }
-
-    nav section ul li.yellow:after {
-        content: '';
-        position: absolute;
-        top: 14px;
-        right: 0px;
-        width: 10px;
-        height: 10px;
-        background-color: #ea8e39;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-    }
-
-    nav section ul li.green:after {
-        content: '';
-        position: absolute;
-        top: 14px;
-        right: 0px;
-        width: 10px;
-        height: 10px;
-        background-color: #38af5b;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-    }
-
-    nav section ul li.new {
-        font-size: 0.9rem;
-        color: #545f68;
-    }
 
     article {
         position: absolute;
@@ -178,27 +135,9 @@
         height: 200px;
     }
 
-    article section .inlineChart {
-        float: left;
-        width: 30%;
-        margin-bottom: 50px;
-    }
-
-    article section .inlineChart canvas {
-        float: left;
-    }
-
-    article section .inlineChart .info {
-        float: left;
-        padding-left: 20px;
-        padding-top: 16px;
-    }
-
-    article section .inlineChart .info .value {
-        font-size: 2.0rem;
-        color: #D3D3D3;
-    }
-
+    .topnav .icon {
+  display: none;
+        }
 }
         /*{#Phone#}*/
         @media screen and (max-width:480px){
@@ -215,19 +154,33 @@
         color: #D3D3D3;
     }
 
-    nav {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 70%;
-        left: 0;
-        padding: 10px;
-        border-right: 2px solid #161e23;
-    }
+    .topnav section ul li a{display: none;}
+    .topnav section ul header{display: none;}
+  .topnav a.icon {
+          position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+  }
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive section ul li a.glyphicon.glyphicon-th-large.link-icon{
+    float: none;
+    display: block;
+    text-align: left;
+  }
+    .topnav.responsive section ul li a.glyphicon-signal.link-icon{
+    float: none;
+    display: block;
+    text-align: left;
+  }
 
     nav > header {
         font-weight: 700;
-        font-size: 1.0rem;
+        font-size: 0.5rem;
         text-transform: uppercase;
     }
 
@@ -267,59 +220,13 @@
         text-align: center;
     }
 
-    nav section ul li.red:after {
-        content: '';
-        position: absolute;
-        top: 14px;
-        right: 0px;
-        width: 10px;
-        height: 10px;
-        background-color: #ec487f;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-    }
-
-    nav section ul li.yellow:after {
-        content: '';
-        position: absolute;
-        top: 14px;
-        right: 0px;
-        width: 10px;
-        height: 10px;
-        background-color: #ea8e39;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-    }
-
-    nav section ul li.green:after {
-        content: '';
-        position: absolute;
-        top: 14px;
-        right: 0px;
-        width: 10px;
-        height: 10px;
-        background-color: #38af5b;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-    }
-
-    nav section ul li.new {
-        font-size: 0.9rem;
-        color: #545f68;
-    }
-
     article {
         position: absolute;
         top: 0;
         bottom: 0;
         right: 0;
-        left: 30%;
+        left: 20%;
         overflow: auto;
-        border-left: 2px solid #2a3843;
-        padding: 20px;
     }
 
     article > header {
@@ -329,7 +236,7 @@
 
     article > header .title {
         float: left;
-        font-size: 1.0rem;
+        font-size: 0.5rem;
         font-weight: 600;
     }
 
@@ -373,27 +280,4 @@
     article section .chart {
         height: 200px;
     }
-
-    article section .inlineChart {
-        float: left;
-        width: 30%;
-        margin-bottom: 50px;
-    }
-
-    article section .inlineChart canvas {
-        float: left;
-    }
-
-    article section .inlineChart .info {
-        float: left;
-        padding-left: 20px;
-        padding-top: 16px;
-    }
-
-    article section .inlineChart .info .value {
-        font-size: 1.0rem;
-        color: #D3D3D3;
-    }
-
-
         }

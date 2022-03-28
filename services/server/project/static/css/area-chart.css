@@ -1,0 +1,75 @@
+@media screen {
+    .y-axis line {
+            opacity: .2;
+        }
+
+        .y-axis path {
+            display: none;
+        }
+
+        .line {
+            fill: none;
+            stroke-width: 1.5px;
+            opacity: .75;
+        }
+
+        .overlay {
+            fill: none;
+            pointer-events: all;
+        }
+
+
+        .lineHoverDate {
+            fill: white;
+        }
+
+
+    .hoverCircle {
+        opacity: .75;
+    }
+
+    #selectbox {
+        margin-left: 35%;
+    }
+
+    #chart {
+                width:850px;
+        height:410px;
+        margin-left: 24%;
+    }
+
+
+}
+
+@media screen and (max-width:480px){
+.y-axis line {
+            opacity: .2;
+        }
+
+        .y-axis path {
+            display: none;
+        }
+
+        .line {
+            fill: none;
+            stroke-width: 1.5px;
+            opacity: .75;
+        }
+
+        .overlay {
+            fill: none;
+            pointer-events: all;
+        }
+
+
+        .lineHoverDate {
+            fill: white;
+        }
+
+
+    .hoverCircle {
+        opacity: .75;
+    }
+
+}
+

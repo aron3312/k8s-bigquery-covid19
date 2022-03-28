@@ -5,6 +5,7 @@ FROM python:3.6.5-slim
 RUN apt-get update && \
     apt-get -y install netcat && \
     apt-get -y install opencc && \
+    apt-get install -y cron && \
     apt-get clean
 
 # set working directory
@@ -20,6 +21,11 @@ RUN chmod +x /usr/src/app/entrypoint.sh
 
 # add app
 COPY . /usr/src/app
+
+# set crontab
+RUN cp ./crontabfile /etc/cron.d/cron-task
+RUN chmod 0644 /etc/cron.d/cron-task
+RUN crontab /etc/cron.d/cron-task
 
 # run server
 CMD ["/usr/src/app/entrypoint.sh"]

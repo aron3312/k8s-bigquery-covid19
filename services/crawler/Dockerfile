@@ -5,6 +5,7 @@ FROM python:3.8.1-slim
 RUN apt-get update && \
     apt-get -y install netcat && \
     apt-get clean && \
+    apt-get -y install opencc && \
     apt-get -y install rsyslog
 
 # set working directory
